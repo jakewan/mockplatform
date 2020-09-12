@@ -1,0 +1,11 @@
+*.py[cod]
+__pycache__/
+
+# Distribution and packaging
+*.egg-info/
+
+# Development virtual environment
+.devenv/
+
+# SSL files used for local development
+.ssl-tmp/
