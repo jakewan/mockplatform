@@ -3,6 +3,9 @@ from setuptools import setup
 setup_kwargs = {
     'name': 'mockplatform',
     'version': '0.1.0',
+    'url': 'https://github.com/jakewan/mockplatform',
+    'author': 'Jacob Wan',
+    'author_email': 'jacobwan840@gmail.com',
     'packages': [
         'mockplatform'
     ],
