@@ -5,7 +5,7 @@ import os
 from sanic import Sanic
 from sanic import response
 
-app = Sanic(name='PlatformsApp')
+app = Sanic(name='MockPlatform')
 
 
 def send_bytes(count):
