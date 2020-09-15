@@ -1,3 +1,3 @@
-# platformsapp
+# Mock Platform
 
-Webapp for cbsi-platforms.gratopia.com.
+Generate HTTP responses to test RUM clients under various runtime conditions.
