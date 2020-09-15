@@ -1,4 +1,5 @@
 import argparse
+from asyncio import sleep
 import os
 
 from sanic import Sanic
@@ -22,6 +23,17 @@ async def index(request):
 @app.route('/bytes/<count:int>')
 async def random_bytes(request, count):
     assert count >= 0
+    return response.stream(
+        send_bytes(count),
+        content_type='application/octet-stream'
+    )
+
+
+@app.route('/bytes/<count:int>/delay/<delay:int>')
+async def random_bytes_with_delay(request, count, delay):
+    assert count >= 0
+    assert delay >= 0
+    await sleep(delay)
     return response.stream(
         send_bytes(count),
         content_type='application/octet-stream'
