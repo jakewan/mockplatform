@@ -5,6 +5,8 @@ import os
 from sanic import Sanic
 from sanic import response
 
+from mockplatform.resources import homepage
+
 app = Sanic(name='MockPlatform')
 
 
@@ -17,7 +19,7 @@ def send_bytes(count):
 
 @app.route('/')
 async def index(request):
-    return response.text('hello')
+    return response.html(homepage.content)
 
 
 @app.route('/bytes/<count:int>')
