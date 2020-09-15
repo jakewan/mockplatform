@@ -3,6 +3,8 @@ __pycache__/
 
 # Distribution and packaging
 *.egg-info/
+build/
+dist/
 
 # Virtual environments
 .devenv/

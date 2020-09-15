@@ -25,9 +25,13 @@ dev-env-clean:
 	@$(DEV_PIP) freeze | xargs $(DEV_PIP) uninstall -y
 	@echo "Environment packages uninstalled"
 
-dev-env-install: dev-env-clean
-	@echo "Installing packages..."
+dev-update-build-tools:
+	@echo "Updating build tools..."
 	@$(DEV_PIP) install --upgrade pip setuptools wheel
+	@echo "Build tools updated"
+
+dev-env-install: dev-env-clean dev-update-build-tools
+	@echo "Installing packages..."
 	@$(DEV_PIP) install -e .[dev]
 	@echo "Environment packages installed"
 
@@ -39,6 +43,10 @@ dev-test:
 
 dev-check-setup:
 	@$(DEV_PYTHON) setup.py check
+
+dev-generate-dist-packages: dev-update-build-tools
+	@echo "Generating distribution packages..."
+	@$(DEV_PYTHON) setup.py sdist bdist_wheel
 
 prod-env-destroy:
 	@rm -rf $(PROD_VENV_DIR)
