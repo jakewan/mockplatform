@@ -5,11 +5,13 @@ from sanic import Sanic
 from sanic import response
 
 app = Sanic(name='PlatformsApp')
-chunk = None
 
 
-def make_chunk():
-    return bytes(os.urandom(1555000))
+def send_bytes(count):
+    async def _inner(response):
+        chunk = bytes(os.urandom(count))
+        await response.write(chunk)
+    return _inner
 
 
 @app.route('/')
@@ -17,13 +19,11 @@ async def index(request):
     return response.text('hello')
 
 
-@app.route('/measurements/chunk')
-async def chunk_file(request):
-    async def _inner(response):
-        await response.write(chunk)
-
+@app.route('/bytes/<count:int>')
+async def random_bytes(request, count):
+    assert count >= 0
     return response.stream(
-        _inner,
+        send_bytes(count),
         content_type='application/octet-stream'
     )
 
@@ -32,7 +32,5 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument('--forwarded-secret', required=True)
     args = parser.parse_args()
-    global chunk
-    chunk = make_chunk()
     app.config.FORWARDED_SECRET = args.forwarded_secret
     app.run(host='127.0.0.1', port=8000)
