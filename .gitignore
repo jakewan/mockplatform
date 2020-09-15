@@ -4,8 +4,9 @@ __pycache__/
 # Distribution and packaging
 *.egg-info/
 
-# Development virtual environment
+# Virtual environments
 .devenv/
+.prodenv/
 
 # SSL files used for local development
 .ssl-tmp/

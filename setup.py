@@ -1,9 +1,11 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup_kwargs = {
-    'name': 'platformsapp',
+    'name': 'mockplatform',
     'version': '0.1.0',
-    'packages': find_packages(),
+    'packages': [
+        'mockplatform'
+    ],
     'install_requires': [
         'sanic'
     ],
@@ -16,7 +18,7 @@ setup_kwargs = {
     },
     'entry_points': {
         'console_scripts': [
-            'platformsapp = platformsapp.app:run'
+            'mockplatform = mockplatform.app:run'
         ]
     },
     'python_requires': '>=3.7.3',
