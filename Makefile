@@ -37,6 +37,9 @@ dev-run:
 dev-test:
 	@$(DEV_BIN_DIR)/pytest
 
+dev-check-setup:
+	@$(DEV_PYTHON) setup.py check
+
 prod-env-destroy:
 	@rm -rf $(PROD_VENV_DIR)
 
