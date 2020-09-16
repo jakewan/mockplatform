@@ -44,7 +44,7 @@ dev-test:
 dev-check-setup:
 	@$(DEV_PYTHON) setup.py check
 
-dev-generate-dist-packages: dev-update-build-tools
+generate-dist-packages: dev-update-build-tools
 	@echo "Generating distribution packages..."
 	@$(DEV_PYTHON) setup.py sdist bdist_wheel
 
