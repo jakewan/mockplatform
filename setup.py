@@ -16,7 +16,7 @@ setup_kwargs = {
     'description': 'Sometimes things go wrong',
     'long_description': get_long_description(),
     'long_description_content_type': 'text/markdown',
-    'version': '0.1.0',
+    'version': '0.1.1',
     'url': 'https://github.com/jakewan/mockplatform',
     'author': 'Jacob Wan',
     'author_email': 'jacobwan840@gmail.com',
