@@ -27,7 +27,7 @@ dev-env-clean:
 
 dev-update-build-tools:
 	@echo "Updating build tools..."
-	@$(DEV_PIP) install --upgrade pip setuptools wheel
+	@$(DEV_PIP) install --upgrade pip setuptools wheel twine
 	@echo "Build tools updated"
 
 dev-env-install: dev-env-clean dev-update-build-tools
@@ -47,6 +47,12 @@ dev-check-setup:
 dev-generate-dist-packages: dev-update-build-tools
 	@echo "Generating distribution packages..."
 	@$(DEV_PYTHON) setup.py sdist bdist_wheel
+
+upload-to-pypi-test:
+	@$(DEV_PYTHON) -m twine upload --repository testpypi dist/*
+
+upload-to-pypi-prod:
+	@$(DEV_PYTHON) -m twine upload dist/*
 
 prod-env-destroy:
 	@rm -rf $(PROD_VENV_DIR)
