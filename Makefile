@@ -44,7 +44,10 @@ dev-test:
 dev-check-setup:
 	@$(DEV_PYTHON) setup.py check
 
-generate-dist-packages: dev-update-build-tools
+clean-build-dirs:
+	@rm -rf ./build ./dist ./*egg-info
+
+generate-dist-packages: dev-update-build-tools clean-build-dirs
 	@echo "Generating distribution packages..."
 	@$(DEV_PYTHON) setup.py sdist bdist_wheel
 
