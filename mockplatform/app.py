@@ -4,6 +4,7 @@ import os
 
 from sanic import Sanic
 from sanic import response
+from sanic.exceptions import abort, NotFound
 
 from mockplatform.resources import homepage
 
@@ -20,6 +21,13 @@ def send_bytes(count):
 @app.route('/')
 async def index(request):
     return response.html(homepage.content)
+
+
+@app.route('/status/<code:int>')
+async def return_specific_status(request, code):
+    if code in [404, 503]:
+        abort(code)
+    raise NotFound('Not Found')
 
 
 @app.route('/bytes/<count:int>')
